@@ -26,7 +26,7 @@ app.listen(port, () => {
 });
 
 app.get('/', (req, res) => {
-    res.send('Hello, World!');
+    res.json({'status': 'OK', 'msg': 'Hello, World!'});
 });
 
 app.get('/mensagens', (req, res) => {
@@ -180,3 +180,22 @@ app.post('/tipo_usuario', (req, res) => {
         });
     }
 }); /* {"tipo_usuario": "nome_tipo"} */
+
+app.post('/usuario', (req, res) => {
+    let corpoRequisicao = req.body;
+    if (corpoRequisicao != null && corpoRequisicao != {}) {
+        let idTipo = corpoRequisicao.id_tipo;
+        let nome = corpoRequisicao.nome;
+        let senha = corpoRequisicao.senha;
+        let status = corpoRequisicao.status;
+        let sql = `INSERT INTO tb_usuario (id_tipo, nome, senha, status)
+                        VALUES (${idTipo}, '${nome}', '${senha}', '${status}');`;
+        connection.query(sql, (err, rows, fields) => {
+            if (!err) {
+                res.json({'status': 'OK', 'res': 'Novo usuário inserido.'});
+            } else {
+                res.json({'status': 'ERRO', 'res': `${err.code} - ${err.sqlMessage}`});
+            }
+        });
+    }
+}); /* {"id_tipo": numero, "nome": nome, "senha": senha, "status": (A OU I)} */
