@@ -1,10 +1,11 @@
--- CRIANDO TABELAS
-create table tb_categoria (
+create database if not exists db_oracleif;
+
+create table if not exists tb_categoria (
 	id     integer primary key not null auto_increment,
     nome_categoria   varchar(30) not null
 );
 
-create table tb_mensagem (
+create table if not exists tb_mensagem (
     id             int not null primary key auto_increment,
     id_categoria   int not null,
     mensagem       varchar(1000) not null,
@@ -12,12 +13,12 @@ create table tb_mensagem (
     foreign key (id_categoria) references tb_categoria (id)
 );
 
-create table tb_tipo_usuario (
+create table if not exists tb_tipo_usuario (
     id             int not null primary key auto_increment,
     tipo_usuario   varchar(30) not null
 );
 
-create table tb_usuario (
+create table if not exists tb_usuario (
     id           int not null primary key auto_increment,
     id_tipo      int not null,
     nome         varchar(50) not null,
