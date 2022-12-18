@@ -2,24 +2,24 @@ const connection = require('./conexao');
 
 const obterTodas = async () => {
     const [mensagens] = await connection.execute('SELECT * FROM tb_mensagem');
-    return mensagens;
+    return mensagens[0];
 };
 
 const obterMensagemPorId = async (id) => {
     const [mensagem] = await connection.execute('SELECT * FROM tb_mensagem WHERE id = ?', [id]);
-    return mensagem;
+    return mensagem[0];
 };
 
 const obterMensagemPorCategoria = async (idCat) => {
     const query = 'SELECT * FROM tb_mensagem WHERE id_categoria = ?';
     const [mensagem] = await connection.execute(query, [idCat]);
-    return mensagem;
+    return mensagem[0];
 };
 
 const obterMensagemAleatoriaPorCategoria = async (idCat) => {
     const query = 'SELECT * FROM tb_mensagem WHERE id_categoria = ? ORDER BY RAND() LIMIT 1';
     const [mensagem] = await connection.execute(query, [idCat]);
-    return mensagem;
+    return mensagem[0];
 };
 
 const inserirMensagem = async (mensagem) => {

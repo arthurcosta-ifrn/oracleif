@@ -9,7 +9,7 @@ const obterTodas = async () => {
 const obterCategoriaPorId = async (id) => {
     const query = 'SELECT * FROM tb_categoria WHERE id = ?';
     const [categoria] = await connection.execute(query, [id]);
-    return categoria;
+    return categoria[0];
 };
 
 const inserirCategoria = async (categoria) => {
