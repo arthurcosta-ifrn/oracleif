@@ -7,7 +7,7 @@ const obterTodas = async () => {
 
 const obterMensagemPorId = async (id) => {
     const [mensagem] = await connection.execute('SELECT * FROM tb_mensagem WHERE id = ?', [id]);
-    return mensagem;
+    return mensagem[0];
 };
 
 const obterMensagemPorCategoria = async (idCat) => {
@@ -19,7 +19,7 @@ const obterMensagemPorCategoria = async (idCat) => {
 const obterMensagemAleatoriaPorCategoria = async (idCat) => {
     const query = 'SELECT * FROM tb_mensagem WHERE id_categoria = ? ORDER BY RAND() LIMIT 1';
     const [mensagem] = await connection.execute(query, [idCat]);
-    return mensagem;
+    return mensagem[0];
 };
 
 const inserirMensagem = async (mensagem) => {
