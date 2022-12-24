@@ -5,6 +5,7 @@ const router = express.Router();
 
 const mensagensController = require('./controllers/mensagens.controller');
 const categoriasController = require('./controllers/categorias.controller');
+const usuariosController = require('./controllers/usuarios.controller');
 const mensagensMiddleware = require('./middlewares/mensagens.middleware');
 const categoriasMiddleware = require('./middlewares/categorias.middleware');
 
@@ -15,6 +16,7 @@ router.get('/mensagens/:idcat/categoria/aleatorio',
     mensagensController.obterMensagemAleatoriaPorCategoria);
 router.get('/categorias', categoriasController.obterTodas);
 router.get('/categorias/:id', categoriasController.obterCategoriaPorId);
+router.get('/usuarios', usuariosController.obterTodos);
 
 router.post('/mensagens',
     mensagensMiddleware.validarCampoIdCat,
@@ -26,6 +28,7 @@ router.post('/categorias',
     categoriasMiddleware.validarCampoNomeCategoria,
     categoriasController.inserirCategoria
 );
+router.post('/usuario', usuariosController.verificaDadosUsuario)
 
 router.delete('/mensagens/:id', mensagensController.excluirMensagem);
 router.delete('/categorias/:id', categoriasController.excluirCategoria);
