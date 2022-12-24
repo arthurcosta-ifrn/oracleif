@@ -4,8 +4,7 @@
 insert into tb_tipo_usuario(tipo_usuario) values ('ADMINISTRADOR'), ('NORMAL');
 
 -- tb_usuario
-insert into tb_usuario(id_tipo, nome, senha, status) values (1, 'ORACLEIF ADMIN', 'Ifrn.2022', 'A'),
-                                                            (1, 'ORACLEIF ADMIN', 'Ifrn.2022', 'A');
+insert into tb_usuario(id_tipo, nome, senha, status) values (1, 'ORACLEIF ADMIN', 'Ifrn.2022', 'A');
 
 -- tb_categoria
 insert into tb_categoria (nome_categoria) values ('CONSELHO'),
