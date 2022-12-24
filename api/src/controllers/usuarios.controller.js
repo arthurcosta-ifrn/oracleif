@@ -7,7 +7,11 @@ const obterTodos = async (_req, res) => {
 
 const verificaDadosUsuario = async (req, res) => {
     const usuario = await usuariosModel.verificaDadosUsuario(req.body);
-    res.status(201).json(usuario);
+    if (usuario.length > 0) {
+        res.status(201).json({'status': true, 'msg': 'User can enter.'});
+    } else {
+        res.status(201).json({'status': false, 'msg': 'User can not enter.'})
+    }
 }
 
 module.exports = {
